@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ヤセトク - お金を預けて本気のダイエット</title>
+  <meta name="description" content="達成すれば0円。失敗した分だけ寄付に。金銭コミットで続くダイエットアプリ。">
+  <meta property="og:title" content="ヤセトク - お金を預けて本気のダイエット">
+  <meta property="og:description" content="達成すれば0円。失敗した分だけ寄付に。行動経済学に基づく新しいダイエットアプリ。">
+  <meta property="og:type" content="website">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      color: #1a1a2e;
+      line-height: 1.7;
+      background: #fff;
+    }
+
+    /* ========== Pain (First View) ========== */
+    .pain {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 3rem 1.5rem;
+      background: #1a1a2e;
+      color: #fff;
+    }
+
+    .pain-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .pain h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      line-height: 1.4;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .pain h1 .pain-accent {
+      color: #ffd700;
+    }
+
+    .pain-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .pain-items li {
+      padding: 1rem 1.2rem;
+      background: rgba(255,255,255,0.06);
+      border-radius: 12px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      border-left: 3px solid rgba(255,215,0,0.5);
+    }
+
+    .pain-items .icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .pain-bridge {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .pain-bridge p {
+      font-size: 1.1rem;
+      opacity: 0.7;
+      margin-bottom: 1rem;
+    }
+
+    .pain-bridge .bridge-text {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #ffd700;
+      line-height: 1.5;
+    }
+
+    .scroll-hint {
+      text-align: center;
+      margin-top: 2rem;
+      animation: bounce 2s infinite;
+    }
+
+    .scroll-hint span {
+      display: inline-block;
+      font-size: 1.5rem;
+      opacity: 0.5;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+
+    /* ========== Hero (Solution) ========== */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 1.5rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255,215,0,0.2);
+      border: 1px solid rgba(255,215,0,0.4);
+      padding: 0.4rem 1.2rem;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(4px);
+      animation: pulse-badge 2s infinite;
+    }
+
+    @keyframes pulse-badge {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255,215,0,0.3); }
+      50% { box-shadow: 0 0 0 8px rgba(255,215,0,0); }
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+
+    .hero h2 .accent {
+      color: #ffd700;
+    }
+
+    .hero p.subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+      max-width: 500px;
+    }
+
+    /* App mockup */
+    .hero-mockup {
+      width: 220px;
+      margin: 0 auto 1.5rem;
+      background: #fff;
+      border-radius: 24px;
+      padding: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .mockup-screen {
+      background: #f8f9ff;
+      border-radius: 16px;
+      padding: 1rem;
+      font-size: 0.65rem;
+      color: #1a1a2e;
+      text-align: left;
+    }
+
+    .mockup-header {
+      text-align: center;
+      font-weight: 800;
+      font-size: 0.75rem;
+      color: #764ba2;
+      margin-bottom: 0.5rem;
+    }
+
+    .mockup-goal {
+      background: #fff;
+      border-radius: 8px;
+      padding: 0.5rem;
+      margin-bottom: 0.4rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    .mockup-goal-title {
+      font-weight: 700;
+      font-size: 0.6rem;
+      color: #333;
+    }
+
+    .mockup-progress {
+      height: 6px;
+      background: #e0e0e0;
+      border-radius: 3px;
+      margin-top: 4px;
+      overflow: hidden;
+    }
+
+    .mockup-progress-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+    }
+
+    .mockup-money {
+      text-align: center;
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: #2e7d32;
+      margin: 0.5rem 0 0.3rem;
+    }
+
+    .mockup-money-label {
+      text-align: center;
+      font-size: 0.55rem;
+      color: #888;
+    }
+
+    .mockup-challenge {
+      background: #fff;
+      border-radius: 8px;
+      padding: 0.4rem 0.5rem;
+      margin-top: 0.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      font-size: 0.55rem;
+    }
+
+    .mockup-challenge-check {
+      color: #2e7d32;
+      font-weight: 700;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: #ffd700;
+      color: #1a1a2e;
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 1rem 2.5rem;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .cta-button-secondary {
+      display: inline-block;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 0.9rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+
+    .cta-button-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    .hero-note {
+      margin-top: 0.8rem;
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    .hero-counter {
+      margin-top: 1.2rem;
+      font-size: 0.85rem;
+      opacity: 0.85;
+    }
+
+    .hero-counter strong {
+      color: #ffd700;
+      font-size: 1.1rem;
+    }
+
+    /* ========== Section common ========== */
+    section {
+      padding: 4rem 1.5rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 2rem;
+      line-height: 1.4;
+    }
+
+    .section-title .highlight {
+      color: #764ba2;
+    }
+
+    /* ========== Problem ========== */
+    .problem {
+      background: #f8f9ff;
+      max-width: 100%;
+      padding: 4rem 1.5rem;
+    }
+
+    .problem-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .problem-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .problem-list li {
+      background: #fff;
+      padding: 1.2rem 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .problem-list .icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    /* ========== Affinity ========== */
+    .affinity {
+      max-width: 100%;
+      padding: 3rem 1.5rem;
+      text-align: center;
+    }
+
+    .affinity-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      border-left: 4px solid #764ba2;
+      padding: 2rem 1.5rem;
+      border-radius: 0 12px 12px 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      text-align: left;
+    }
+
+    .affinity-inner p {
+      font-size: 1rem;
+      color: #444;
+      line-height: 1.9;
+    }
+
+    .affinity-inner p strong {
+      color: #764ba2;
+    }
+
+    .affinity-inner .affinity-author {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #888;
+      text-align: right;
+    }
+
+    /* ========== How it works ========== */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .step {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-content h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .step-content p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    /* Mid CTA */
+    .mid-cta {
+      text-align: center;
+      padding: 2.5rem 1.5rem 0;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* ========== Key point ========== */
+    .key-point {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      max-width: 100%;
+      padding: 4rem 1.5rem;
+      text-align: center;
+    }
+
+    .key-point-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .key-point h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .key-point p {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+    }
+
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #ffd700;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    .authority-row {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .authority-item {
+      font-size: 0.8rem;
+      opacity: 0.75;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* ========== Features ========== */
+    .features {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: #f8f9ff;
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+
+    .feature-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* ========== Comparison ========== */
+    .comparison {
+      background: #f8f9ff;
+      max-width: 100%;
+      padding: 4rem 1.5rem;
+    }
+
+    .comparison-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .comparison-table th, .comparison-table td {
+      padding: 0.8rem 0.6rem;
+      text-align: center;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .comparison-table th {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    .comparison-table th:last-child {
+      color: #764ba2;
+      font-size: 0.95rem;
+    }
+
+    .comparison-table td:first-child {
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .comparison-table td:last-child {
+      color: #764ba2;
+      font-weight: 600;
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .check { color: #2e7d32; }
+    .cross { color: #c62828; }
+
+    /* ========== FAQ ========== */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .faq-item {
+      border: 1px solid #eee;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 1.2rem 1.5rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 1.3rem;
+      color: #764ba2;
+      transition: transform 0.2s;
+    }
+
+    .faq-item.open .faq-question::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      padding: 0 1.5rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s, padding 0.3s;
+      color: #555;
+      font-size: 0.95rem;
+    }
+
+    .faq-item.open .faq-answer {
+      padding: 0 1.5rem 1.2rem;
+      max-height: 200px;
+    }
+
+    /* ========== CTA section ========== */
+    .cta-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      max-width: 100%;
+      padding: 4rem 1.5rem;
+      text-align: center;
+      color: #fff;
+    }
+
+    .cta-inner {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .cta-section h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+    }
+
+    .cta-section .cta-sub {
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-urgency {
+      display: inline-block;
+      background: rgba(255,215,0,0.2);
+      border: 1px solid rgba(255,215,0,0.4);
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: #ffd700;
+    }
+
+    .form-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .form-group input {
+      flex: 1;
+      padding: 0.9rem 1.2rem;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 12px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      background: rgba(255,255,255,0.95);
+    }
+
+    .form-group input:focus {
+      border-color: #ffd700;
+    }
+
+    .form-group button {
+      padding: 0.9rem 1.5rem;
+      background: #ffd700;
+      color: #1a1a2e;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s;
+      white-space: nowrap;
+    }
+
+    .form-group button:hover {
+      transform: translateY(-1px);
+    }
+
+    .form-note {
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    .success-message {
+      display: none;
+      background: rgba(255,255,255,0.95);
+      color: #2e7d32;
+      padding: 1.2rem;
+      border-radius: 12px;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    /* Survey after registration */
+    .post-survey {
+      display: none;
+      background: rgba(255,255,255,0.95);
+      padding: 1.5rem;
+      border-radius: 12px;
+      color: #1a1a2e;
+      text-align: left;
+      margin-top: 1rem;
+    }
+
+    .post-survey h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      text-align: center;
+    }
+
+    .survey-q {
+      margin-bottom: 1rem;
+    }
+
+    .survey-q label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    .survey-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .survey-option {
+      display: inline-block;
+      padding: 0.4rem 0.8rem;
+      border: 2px solid #ddd;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: #fff;
+    }
+
+    .survey-option:hover, .survey-option.selected {
+      border-color: #764ba2;
+      background: #f3e8ff;
+      color: #764ba2;
+    }
+
+    .survey-submit {
+      display: block;
+      width: 100%;
+      padding: 0.7rem;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 0.8rem;
+    }
+
+    .survey-thanks {
+      display: none;
+      text-align: center;
+      color: #764ba2;
+      font-weight: 700;
+      padding: 1rem;
+    }
+
+    /* ========== Footer ========== */
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    /* ========== Responsive ========== */
+    @media (min-width: 640px) {
+      .pain h1 { font-size: 2.4rem; }
+      .hero h2 { font-size: 2.8rem; }
+      .hero-mockup { width: 260px; }
+      .form-group input { font-size: 1.05rem; }
+    }
+
+    @media (max-width: 480px) {
+      .form-group {
+        flex-direction: column;
+      }
+      .stats-row {
+        gap: 1.5rem;
+      }
+      .comparison-table { font-size: 0.8rem; }
+      .comparison-table th, .comparison-table td { padding: 0.6rem 0.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Pain (First View) ===== -->
+  <section class="pain">
+    <div class="pain-inner">
+      <h1>
+        ダイエット、<br>
+        <span class="pain-accent">また挫折していませんか？</span>
+      </h1>
+      <ul class="pain-items">
+        <li><span class="icon">😩</span>始めても3日で続かなくなる</li>
+        <li><span class="icon">📉</span>痩せてもリバウンドを繰り返す</li>
+        <li><span class="icon">💸</span>ジムの月会費だけ払って行かなくなる</li>
+        <li><span class="icon">🤷</span>「明日から本気出す」がもう何回目かわからない</li>
+      </ul>
+      <div class="pain-bridge">
+        <p>それ、あなたの意志が弱いからじゃありません。</p>
+        <p class="bridge-text">「続く仕組み」が<br>なかっただけです。</p>
+      </div>
+      <div class="scroll-hint"><span>&#9660;</span></div>
+    </div>
+  </section>
+
+  <!-- ===== Hero (Solution) ===== -->
+  <section class="hero">
+    <span class="hero-badge">先着200名 限定で事前登録受付中</span>
+    <h2>
+      お金を預けて<br>
+      <span class="accent">本気のダイエット。</span>
+    </h2>
+    <p class="subtitle">
+      達成すれば0円。失敗した分だけ慈善団体に寄付。<br>
+      金銭コミットで「今度こそ」を実現するアプリ。
+    </p>
+
+    <!-- App Mockup -->
+    <div class="hero-mockup">
+      <div class="mockup-screen">
+        <div class="mockup-header">ヤセトク</div>
+        <div class="mockup-goal">
+          <div class="mockup-goal-title">目標：65kg（現在 72kg）残り58日</div>
+          <div class="mockup-progress"><div class="mockup-progress-fill" style="width:29%"></div></div>
+        </div>
+        <div class="mockup-money">&yen;7,400 残り</div>
+        <div class="mockup-money-label">&yen;10,000中 &yen;2,600分を寄付済み</div>
+        <div class="mockup-challenge">
+          <span>運動2回/週（&yen;500）</span>
+          <span class="mockup-challenge-check">1/2</span>
+        </div>
+        <div class="mockup-challenge">
+          <span>体重記録3回/週（&yen;300）</span>
+          <span class="mockup-challenge-check">2/3</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="#register" class="cta-button">無料で事前登録する</a>
+    <p class="hero-note">リリース時に優先アクセス権をお届けします</p>
+    <p class="hero-counter">現在 <strong id="counterDisplay">47</strong> 人が登録済み</p>
+  </section>
+
+  <!-- ===== Affinity（親近感） ===== -->
+  <div class="affinity">
+    <div class="affinity-inner">
+      <p>
+        実はこのアプリ、<strong>何度もダイエットに挫折した経験</strong>から生まれました。<br><br>
+        食事管理アプリを試しても続かない。ジムに入会しても3ヶ月で幽霊会員。「意志力がないから痩せられない」と自分を責める日々。<br><br>
+        でもあるとき気づいたんです。<strong>意志力の問題じゃなくて、仕組みの問題だ</strong>と。<br><br>
+        行動経済学では「損失回避」という心理が知られています。人は得することより、<strong>失うことの方が2倍つらい</strong>。この仕組みを使えば、意志力に頼らずダイエットが続くはず――そうして生まれたのがヤセトクです。
+      </p>
+      <p class="affinity-author">-- ヤセトク開発チーム</p>
+    </div>
+  </div>
+
+  <!-- ===== How it works ===== -->
+  <section>
+    <h2 class="section-title"><span class="highlight">ヤセトク</span>の仕組み</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>目標と金額を設定</h3>
+          <p>目標体重と期限を決めて、月の上限コミット金額（1,000〜30,000円）を設定。実際に引かれるのは失敗した時だけ。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>週間・月間チャレンジに挑戦</h3>
+          <p>「今週2回運動する（失敗時500円）」「今月-2kg（失敗時2,000円）」など、自分で難易度と金額を調整できます。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>達成すれば0円！</h3>
+          <p>チャレンジ達成で課金なし。失敗した場合のみ、設定額があなたが選んだ慈善団体に自動寄付されます。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h3>AIコーチが毎日サポート</h3>
+          <p>食事写真からカロリーを自動推定。あなたに合った運動・食事アドバイスをAIがパーソナルに提案します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Mid CTA ===== -->
+  <div class="mid-cta">
+    <a href="#register" class="cta-button-secondary">先着200名に入る →</a>
+  </div>
+
+  <!-- ===== Key point ===== -->
+  <div class="key-point">
+    <div class="key-point-inner">
+      <h2>なぜ「お金」で<br>ダイエットが続くのか？</h2>
+      <p>
+        行動経済学の研究で、人は「得る喜び」よりも「失う痛み」を<strong>約2倍</strong>強く感じることがわかっています。<br>
+        この「損失回避」の心理を活用し、ダイエット継続率を飛躍的に高めます。
+      </p>
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-number">3x</div>
+          <div class="stat-label">金銭コミットによる<br>目標達成率の向上*</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">$180M+</div>
+          <div class="stat-label">海外類似サービスの<br>累計コミット金額</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">0社</div>
+          <div class="stat-label">日本での<br>競合サービス</div>
+        </div>
+      </div>
+      <div class="authority-row">
+        <div class="authority-item">* Yale大学の行動経済学研究に基づく</div>
+        <div class="authority-item">海外では75万人以上が利用</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Features ===== -->
+  <section>
+    <h2 class="section-title">ヤセトクの<span class="highlight">3つの安心</span></h2>
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <div>
+          <h3>月額上限ありで安心</h3>
+          <p>コミット金額には月の上限を自分で設定。「際限なく取られる」心配はゼロ。失敗しても上限以上は一切発生しません。</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎁</div>
+        <div>
+          <h3>失敗しても社会貢献に</h3>
+          <p>失敗金は子ども支援・環境保護・医療など、5カテゴリから選んだ慈善団体に寄付。「損した」ではなく「誰かの役に立った」に変わります。</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <div>
+          <h3>AI専属コーチ付き</h3>
+          <p>食事写真のカロリー自動推定、パーソナライズされた運動・食事アドバイス。あなた専属のダイエットコーチが24時間サポートします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Comparison ===== -->
+  <div class="comparison">
+    <div class="comparison-inner">
+      <h2 class="section-title">他のダイエット法との<span class="highlight">違い</span></h2>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>食事記録アプリ</th>
+            <th>ジム通い</th>
+            <th>ヤセトク</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>続けるモチベーション</td>
+            <td class="cross">意志力頼み</td>
+            <td class="cross">意志力頼み</td>
+            <td class="check">金銭コミット</td>
+          </tr>
+          <tr>
+            <td>挫折時のコスト</td>
+            <td>なし（放置）</td>
+            <td>月会費だけ消える</td>
+            <td class="check">寄付で社会貢献</td>
+          </tr>
+          <tr>
+            <td>パーソナル指導</td>
+            <td class="cross">なし</td>
+            <td>追加料金</td>
+            <td class="check">AIコーチ無料</td>
+          </tr>
+          <tr>
+            <td>月額費用</td>
+            <td>0〜500円</td>
+            <td>5,000〜15,000円</td>
+            <td class="check">達成すれば0円</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== FAQ ===== -->
+  <section>
+    <h2 class="section-title">よくある質問</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question">本当にお金を取られるの？</div>
+        <div class="faq-answer">チャレンジに失敗した場合のみ、設定した金額が課金されます。達成すれば一切費用はかかりません。月額の上限も自分で設定できるので、想定以上の出費にはなりません。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">寄付先は選べる？</div>
+        <div class="faq-answer">はい。子ども支援、環境保護、動物保護、医療・健康、災害支援の5カテゴリから選べます。チャレンジごとに変更も可能です。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">体重のごまかしはできない？</div>
+        <div class="faq-answer">体重は手入力のみのシンプルな記録方式です。ヤセトクは「自分との約束」を大切にするアプリなので、正直に記録することが最大の効果につながります。継続のしやすさを最優先に設計しています。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">いつリリースされる？</div>
+        <div class="faq-answer">現在開発中です。事前登録いただいた方に、リリース時に優先的にご案内いたします。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">アプリの利用は無料？</div>
+        <div class="faq-answer">基本機能は無料でご利用いただけます。コミット金額は達成すれば一切かかりません。より高度なAI機能を含むプレミアムプランも予定しています。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <div class="cta-section" id="register">
+    <div class="cta-inner">
+      <h2>「今度こそ」を始めよう。</h2>
+      <p class="cta-sub">事前登録でリリース時に優先アクセス。<br>もちろん無料、いつでも解除できます。</p>
+      <div class="cta-urgency">先着200名限定 / 残り <span id="remainSlots">153</span> 枠</div>
+
+      <div class="success-message" id="successMsg">
+        登録ありがとうございます！リリース時にご案内します。
+      </div>
+
+      <div id="formArea">
+        <form id="registerForm">
+          <div class="form-group">
+            <input type="email" id="emailInput" placeholder="メールアドレス" required>
+            <button type="submit">登録する</button>
+          </div>
+        </form>
+        <p class="form-note">※ メールアドレスは案内目的のみに使用します</p>
+      </div>
+
+      <!-- Post-registration survey -->
+      <div class="post-survey" id="postSurvey">
+        <h3>1分だけ教えてください</h3>
+        <div class="survey-q">
+          <label>Q1. 月にいくらまでならコミットできそう？</label>
+          <div class="survey-options" data-question="budget">
+            <span class="survey-option" data-value="1000円">1,000円</span>
+            <span class="survey-option" data-value="3000円">3,000円</span>
+            <span class="survey-option" data-value="5000円">5,000円</span>
+            <span class="survey-option" data-value="10000円以上">10,000円以上</span>
+          </div>
+        </div>
+        <div class="survey-q">
+          <label>Q2. ダイエットが続かない一番の課題は？</label>
+          <div class="survey-options" data-question="challenge">
+            <span class="survey-option" data-value="意志が弱い、すぐにサボってしまう">意志が弱い</span>
+            <span class="survey-option" data-value="食事管理がめんどくさい">食事管理</span>
+            <span class="survey-option" data-value="運動する時間がない">運動する時間がない</span>
+            <span class="survey-option" data-value="一人だと続かない">一人だと続かない</span>
+            <span class="survey-option" data-value="何をすればいいのかわからない">何をすればいいかわからない</span>
+          </div>
+        </div>
+        <button class="survey-submit" id="surveySubmit">回答を送信</button>
+        <div class="survey-thanks" id="surveyThanks">ご回答ありがとうございます！開発の参考にさせていただきます。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2026 ヤセトク. All rights reserved.
+  </footer>
+
+  <script>
+    // ===== FAQ toggle =====
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        q.parentElement.classList.toggle('open');
+      });
+    });
+
+    // ===== Survey option selection =====
+    document.querySelectorAll('.survey-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        const siblings = opt.parentElement.querySelectorAll('.survey-option');
+        siblings.forEach(s => s.classList.remove('selected'));
+        opt.classList.add('selected');
+      });
+    });
+
+    // ===== Google Forms config =====
+    const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfbpFbq1-nI9B3QAYNJMi7NEwXXgo-hzM36kmjWiSfxsNuJVw/formResponse';
+    const ENTRY_EMAIL = 'entry.449232274';
+    const ENTRY_BUDGET = 'entry.488214819';
+    const ENTRY_CHALLENGE = 'entry.133503440';
+
+    // Store email for survey submission
+    let registeredEmail = '';
+
+    // ===== Form submission =====
+    const form = document.getElementById('registerForm');
+    const successMsg = document.getElementById('successMsg');
+    const emailInput = document.getElementById('emailInput');
+    const formArea = document.getElementById('formArea');
+    const postSurvey = document.getElementById('postSurvey');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      registeredEmail = emailInput.value;
+
+      // Send email to Google Forms
+      const formData = new FormData();
+      formData.append(ENTRY_EMAIL, registeredEmail);
+      fetch(GOOGLE_FORM_URL, { method: 'POST', body: formData, mode: 'no-cors' });
+
+      // Update UI
+      successMsg.style.display = 'block';
+      formArea.style.display = 'none';
+      postSurvey.style.display = 'block';
+
+      // Update counter
+      updateCounter(1);
+
+      // GA4 event
+      if (typeof gtag === 'function') {
+        gtag('event', 'sign_up', { method: 'email_preregister' });
+      }
+    });
+
+    // ===== Survey submission =====
+    document.getElementById('surveySubmit').addEventListener('click', () => {
+      const budget = document.querySelector('[data-question="budget"] .selected');
+      const challenge = document.querySelector('[data-question="challenge"] .selected');
+
+      // Send survey answers to Google Forms (as a second submission with email)
+      const formData = new FormData();
+      formData.append(ENTRY_EMAIL, registeredEmail);
+      if (budget) formData.append(ENTRY_BUDGET, budget.dataset.value);
+      if (challenge) formData.append(ENTRY_CHALLENGE, challenge.dataset.value);
+      fetch(GOOGLE_FORM_URL, { method: 'POST', body: formData, mode: 'no-cors' });
+
+      // Show thanks
+      document.getElementById('surveySubmit').style.display = 'none';
+      document.querySelectorAll('.survey-q').forEach(q => q.style.display = 'none');
+      document.querySelector('.post-survey h3').style.display = 'none';
+      document.getElementById('surveyThanks').style.display = 'block';
+
+      // GA4 event
+      if (typeof gtag === 'function') {
+        gtag('event', 'survey_complete', {
+          budget: budget ? budget.dataset.value : null,
+          challenge: challenge ? challenge.dataset.value : null
+        });
+      }
+    });
+
+    // ===== Counter (social proof) =====
+    function updateCounter(add) {
+      const stored = parseInt(localStorage.getItem('yasetoku_counter') || '47');
+      const newCount = stored + (add || 0);
+      localStorage.setItem('yasetoku_counter', newCount);
+      document.getElementById('counterDisplay').textContent = newCount;
+      document.getElementById('remainSlots').textContent = Math.max(0, 200 - newCount);
+    }
+    updateCounter(0);
+  </script>
+
+</body>
+</html>
